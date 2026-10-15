@@ -44,7 +44,7 @@ const PROJECTS = [
   { id: 15, name: 'C# CRUD Form', field: 'desktop', size: 25, desc: 'Simple CRUD form in C# with Visual Studio.', tags: ['C#', 'Visual Studio'], videoUrl: 'https://res.cloudinary.com/dcp4wsqk6/video/upload/v1781534815/crud_vhadff.mp4' },
   { id: 16, name: 'Figma Demo Design', field: 'design', size: 38, desc: 'Demo phone product page designed in Figma for school purposes. Focused on layout and visual polish.', tags: ['Figma'], videoUrl: 'https://res.cloudinary.com/dcp4wsqk6/video/upload/v1781534786/phone_rvvyrt.mp4' },
   { id: 19, name: 'picoCTF Puzzle', field: 'security', size: 40, desc: 'Solved 19 puzzle challenges covering various cybersecurity topics such as Web Exploitation, Cryptography, Reverse Engineering, Forensics and General Skills.', tags: ['picoCTF', 'linux', 'cyberchef'] },
-  { id: 20, name: 'BentoBox Layout', field: 'web', size: 32, desc: 'A bento layout of card grids using bootstrap and css with responsive layout.', tags: ['Bootstrap', 'CSS'] }
+  { id: 20, name: 'BentoBox Layout', field: 'web', size: 32, desc: 'A bento layout of card grids using bootstrap and css with responsive layout.', tags: ['Bootstrap', 'CSS'], liveUrl: 'https://tintin1226.github.io/web_development_subject/' }
 ];
 
 const canvas = document.getElementById('graph-canvas');
@@ -293,6 +293,30 @@ function openModalDetails(node) {
      </div>`
       : '';
 
+    let buttonsHTML = '';
+
+    if ((node.url && node.url.trim() !== '') || (node.liveUrl && node.liveUrl.trim() !== '')) {
+      buttonsHTML += `<div style="display: flex; gap: 0.75rem; margin-top: 1.25rem; flex-wrap: wrap;">`;
+
+      // Live Page Button (Pink theme)
+      if (node.liveUrl && node.liveUrl.trim() !== '') {
+        buttonsHTML += `
+          <a href="${node.liveUrl}" target="_blank" rel="noopener noreferrer" class="modal-action-btn">
+            <i class="bi bi-globe"></i> Live Page
+          </a>`;
+      }
+
+      // GitHub Source Code Button (Cyan/Secondary theme)
+      if (node.url && node.url.trim() !== '') {
+        buttonsHTML += `
+          <a href="${node.url}" target="_blank" rel="noopener noreferrer" class="modal-action-btn secondary">
+            <i class="bi bi-github"></i> Source Code
+          </a>`;
+      }
+
+      buttonsHTML += `</div>`;
+    }
+
     body.innerHTML = `
       <p class="modal-preheading">${FIELD_LABELS[node.field] || node.field}</p>
       <h2 class="modal-heading">${node.name}</h2>
@@ -303,6 +327,8 @@ function openModalDetails(node) {
       <div class="modal-tags-group">
         ${(node.tags || []).map(t => `<span class="dtag">${t}</span>`).join('')}
       </div>
+      
+      ${buttonsHTML}
     `;
   }
 

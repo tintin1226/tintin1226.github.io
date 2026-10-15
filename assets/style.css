@@ -1114,3 +1114,39 @@ body {
     height: 70px;
   }
 }
+
+.modal-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.25rem;
+  background: rgba(255, 46, 146, 0.1);
+  color: var(--text-main);
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 0.85rem;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 46, 146, 0.3);
+  text-decoration: none;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.modal-action-btn:hover {
+  background: var(--pink);
+  color: #040407;
+  border-color: var(--pink);
+  box-shadow: 0 0 15px rgba(255, 46, 146, 0.4);
+  transform: translateY(-2px);
+}
+
+.modal-action-btn.secondary {
+  background: rgba(0, 240, 255, 0.05);
+  border-color: rgba(0, 240, 255, 0.25);
+}
+
+.modal-action-btn.secondary:hover {
+  background: var(--cyan);
+  color: #040407;
+  border-color: var(--cyan);
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
+}
