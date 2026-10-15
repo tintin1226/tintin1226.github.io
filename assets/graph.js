@@ -44,6 +44,7 @@ const PROJECTS = [
   { id: 15, name: 'C# CRUD Form', field: 'desktop', size: 25, desc: 'Simple CRUD form in C# with Visual Studio.', tags: ['C#', 'Visual Studio'], videoUrl: 'https://res.cloudinary.com/dcp4wsqk6/video/upload/v1781534815/crud_vhadff.mp4' },
   { id: 16, name: 'Figma Demo Design', field: 'design', size: 38, desc: 'Demo phone product page designed in Figma for school purposes. Focused on layout and visual polish.', tags: ['Figma'], videoUrl: 'https://res.cloudinary.com/dcp4wsqk6/video/upload/v1781534786/phone_rvvyrt.mp4' },
   { id: 19, name: 'picoCTF Puzzle', field: 'security', size: 40, desc: 'Solved 19 puzzle challenges covering various cybersecurity topics such as Web Exploitation, Cryptography, Reverse Engineering, Forensics and General Skills.', tags: ['picoCTF', 'linux', 'cyberchef'] },
+  { id: 20, name: 'BentoBox Layout', field: 'web', size: 32, desc: 'A bento layout of card grids using bootstrap and css with responsive layout.', tags: ['Bootstrap', 'CSS'] }
 ];
 
 const canvas = document.getElementById('graph-canvas');
@@ -259,7 +260,6 @@ function openModalDetails(node) {
   if (node.isField) {
     const relevant = PROJECTS.filter(p => p.field === node.key);
 
-    // Fetch custom copy or use a generic fallback if the key doesn't exist
     const customIntro = FIELD_DESCRIPTIONS[node.key] || 'Explore the expanded mapping linkages belonging to this track directly on your network tree workspace:';
 
     body.innerHTML = `
