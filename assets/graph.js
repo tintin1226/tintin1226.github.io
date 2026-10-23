@@ -44,7 +44,7 @@ const PROJECTS = [
   { id: 15, name: 'C# CRUD Form', field: 'desktop', size: 25, desc: 'Simple CRUD form in C# with Visual Studio.', tags: ['C#', 'Visual Studio'], videoUrl: 'https://res.cloudinary.com/dcp4wsqk6/video/upload/v1781534815/crud_vhadff.mp4' },
   { id: 16, name: 'Figma Demo Design', field: 'design', size: 38, desc: 'Demo phone product page designed in Figma for school purposes. Focused on layout and visual polish.', tags: ['Figma'], videoUrl: 'https://res.cloudinary.com/dcp4wsqk6/video/upload/v1781534786/phone_rvvyrt.mp4' },
   { id: 19, name: 'picoCTF Puzzle', field: 'security', size: 40, desc: 'Solved 19 puzzle challenges covering various cybersecurity topics such as Web Exploitation, Cryptography, Reverse Engineering, Forensics and General Skills.', tags: ['picoCTF', 'linux', 'cyberchef'] },
-  { id: 20, name: 'Web Dev Subject', field: 'web', size: 32, desc: 'A compilation of projects for web development subject', tags: ['Bootstrap', 'CSS'], liveUrl: 'https://tintin1226.github.io/web_development_subject/' }
+  { id: 20, name: 'Web Dev Subject', field: 'web', size: 32, color: '#00f0ff', desc: 'A compilation of projects for web development subject', tags: ['Bootstrap', 'CSS'], liveUrl: 'https://tintin1226.github.io/web_development_subject/' }
 ];
 
 const canvas = document.getElementById('graph-canvas');
@@ -193,19 +193,20 @@ function draw() {
   projectNodes.forEach(n => {
     const isHovered = hoveredId === n.id;
     const r = n.size * (isHovered ? 1.08 : 1);
+    const c = n.color || PINK_THEME.stroke;
 
     ctx.save();
     ctx.beginPath();
     ctx.arc(n.x, n.y, r, 0, Math.PI * 2);
 
-    ctx.fillStyle = isHovered ? 'rgba(255, 46, 146, 0.15)' : PINK_THEME.fill;
+    ctx.fillStyle = isHovered ? (n.color ? n.color + '26' : 'rgba(255, 46, 146, 0.15)') : PINK_THEME.fill;
     ctx.fill();
 
-    ctx.strokeStyle = PINK_THEME.stroke;
+    ctx.strokeStyle = c;
     ctx.lineWidth = isHovered ? 2 : 1;
     ctx.stroke();
 
-    ctx.fillStyle = isHovered ? '#ffffff' : PINK_THEME.muted;
+    ctx.fillStyle = isHovered ? '#ffffff' : (n.color || PINK_THEME.muted);
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
     const fs = Math.max(10, Math.min(11.5, n.size * 0.32));
